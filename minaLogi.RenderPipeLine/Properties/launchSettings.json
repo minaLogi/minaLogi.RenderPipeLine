@@ -2,7 +2,7 @@
   "profiles": {
     "minaLogi.RenderPipeLine": {
       "commandName": "Executable",
-      "executablePath": "C:\\Users\\corte\\source\\repos\\BeUtl\\src\\BeUtl\\bin\\Release\\net7.0\\Beutl.exe"
+      "executablePath": "..\\..\\..\\source\\repos\\BeUtl\\src\\BeUtl\\bin\\Release\\net7.0\\Beutl.exe"
     }
   }
 }
