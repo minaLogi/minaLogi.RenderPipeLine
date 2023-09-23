@@ -18,7 +18,6 @@ RendererNameがテキスト入力なことに関して、Beutl側で動的にプ
 レンダラは、第三者がBeutlの拡張機能として追加することができます。
 
 ```C#
-using Beutl.Extensibility;
 using Beutl.Graphics;
 using Beutl.Media;
 using Beutl.Media.Pixel;
@@ -34,8 +33,8 @@ public class TestRenderer : Renderer
     public override Bitmap<Bgra8888>? Render(Drawables drawables)
     {
         // ここに描画時の処理を書きます。
+        // ビットマップを作成
         var bitmap = new Bitmap<Bgra8888>(Width, Height);
-        bitmap.Fill(new Bgra8888(0x00, 0xff, 0x00, 0xff));
         foreach (var drawable in drawables)
         {
             // 描画するオブジェクトごとの処理が書けます
