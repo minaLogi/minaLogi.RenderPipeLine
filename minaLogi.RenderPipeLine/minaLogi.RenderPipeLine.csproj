@@ -23,7 +23,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="Beutl.Sdk" Version="1.0.0-preview.20" />
+	  <PackageReference Include="Beutl.Sdk" Version="1.0.0-preview.42" />
 	</ItemGroup>
 
 </Project>
