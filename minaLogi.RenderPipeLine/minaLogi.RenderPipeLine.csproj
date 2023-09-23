@@ -4,6 +4,15 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+
+		<RepositoryUrl>https://github.com/minaLogi/minaLogi.RenderPipeLine</RepositoryUrl>
+		<PackageId>minaLogi.RenderPipeLine</PackageId>
+		<Title>Render Pipeline</Title>
+		<Description>Render pipeline for beutl.</Description>
+		<PackageTags>rendering</PackageTags>
+		<Version>1.0.0-preview.1</Version>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<Authors>minaLogi</Authors>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -14,7 +23,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="Beutl.Sdk" Version="1.0.0-preview.20"/>
+	  <PackageReference Include="Beutl.Sdk" Version="1.0.0-preview.20" />
 	</ItemGroup>
 
 </Project>
