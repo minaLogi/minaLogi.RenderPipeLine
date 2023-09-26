@@ -3,17 +3,19 @@ using Beutl.Graphics;
 using Beutl.Media;
 using Beutl.Media.Pixel;
 using Beutl.Rendering;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace minaLogi.RenderPipeLine
 {
     public class RenderingAPI
     {
-        public static List<Type> Renderers { get; private set; } = new();
         internal Renderer? Renderer { get; private set; }
-        public RenderingAPI(string? rendererName, int w, int h) {
-            if (NameExists(rendererName))
+        public RenderingAPI(Renderer? renderer, int w, int h)
+        {
+            if(renderer != null)
             {
-                Renderer = (Renderer?)Activator.CreateInstance(Renderers.Where(r => r.Name.Equals(rendererName)).First());
+                ShiftRenderer(renderer);
             }
             if (Renderer != null)
             {
@@ -23,12 +25,15 @@ namespace minaLogi.RenderPipeLine
             }
         }
 
-        public bool NameExists(string? name) => Renderers.Where(r => r.Name.Equals(name)).Any();
-
-        public static void Register<T>()
-            where T : Renderer
+        public void ShiftRenderer(Renderer renderer)
         {
-            Renderers.Add(typeof(T));
+            Renderer = renderer;
+            Renderer.OnSelected();
+        }
+
+        public static void Register(Renderer renderer)
+        {
+            RendererEnum.AddChoice(renderer);
         }
 
         public Bitmap<Bgra8888>? Render(Drawables drawables )

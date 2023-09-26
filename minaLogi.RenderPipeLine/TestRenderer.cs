@@ -32,7 +32,7 @@ namespace minaLogi.RenderPipeLine
         public override void Load()
         {
             base.Load();
-            RenderingAPI.Register<TestRenderer>();
+            RenderingAPI.Register(new TestRenderer());
         }
     }
 }

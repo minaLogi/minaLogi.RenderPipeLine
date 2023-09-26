@@ -15,7 +15,9 @@ namespace minaLogi.RenderPipeLine
     {
         private int _width;
         private int _height;
-        private string? _renderername;
+        private Renderer? _renderer;
+
+        private RPCanvasOperator Parent;
 
         public RenderingAPI RenderingAPI { get; private set; }
 
@@ -23,8 +25,8 @@ namespace minaLogi.RenderPipeLine
 
         public RPDrawable(RPCanvasOperator parent)
         {
-            RenderingAPI = new(RendererName, Width, Height);
-            
+            Parent = parent;
+            RenderingAPI = new(Renderer, Width, Height);
         }
         public int Width
         {
@@ -52,19 +54,18 @@ namespace minaLogi.RenderPipeLine
                 }
             }
         }
-        public string? RendererName
+        public Renderer? Renderer
         {
-            get => _renderername;
+            get => _renderer;
             set
             {
-                _renderername = value;
+                _renderer = value;
                 if(value != null)
                 {
-                    if (RenderingAPI.NameExists(value))
-                    {
-                        RenderingAPI = new(value, Width, Height);
-                        RaiseInvalidated(new RenderInvalidatedEventArgs(this, nameof(RendererName)));
-                    }
+                    value.Width = Width;
+                    value.Height = Height;
+                    RenderingAPI.ShiftRenderer(value);
+                    RaiseInvalidated(new RenderInvalidatedEventArgs(this, nameof(Renderer)));
                 }
             }
         }

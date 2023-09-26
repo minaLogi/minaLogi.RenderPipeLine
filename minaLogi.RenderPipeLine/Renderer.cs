@@ -4,6 +4,7 @@ using Beutl.Media.Pixel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,11 @@ namespace minaLogi.RenderPipeLine
         public int Width { get; set; }
         public int Height { get; set; }
 
+        public override string ToString() => this.Name;
+
         public virtual void Load() { }
+
+        public virtual void OnSelected() { }
 
         public virtual Bitmap<Bgra8888>? Render(Drawables drawables)
         {

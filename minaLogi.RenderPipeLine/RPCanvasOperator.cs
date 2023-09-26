@@ -1,17 +1,8 @@
 ﻿using Beutl.Operation;
 using Beutl;
-using Beutl.Rendering;
-using Beutl.Styling;
 using Beutl.Graphics;
-using Beutl.Graphics.Effects;
-using Beutl.Animation;
 using Beutl.Media;
 using System.ComponentModel.DataAnnotations;
-using DynamicData;
-using Beutl.Collections.Pooled;
-using Beutl.ProjectSystem;
-using System.Xml.Linq;
-using ExCSS;
 using Beutl.Operators.Configure;
 
 namespace minaLogi.RenderPipeLine
@@ -20,11 +11,11 @@ namespace minaLogi.RenderPipeLine
     {
         private int _width;
         private int _height;
-        private string? _renderername;
+        private Renderer? _renderer;
 
         public static readonly CoreProperty<int> WidthProperty;
         public static readonly CoreProperty<int> HeightProperty;
-        public static readonly CoreProperty<string?> RendererNameProperty;
+        public static readonly CoreProperty<Renderer?> RendererProperty;
 
 
         internal RPDrawable RPDrawable;
@@ -39,9 +30,8 @@ namespace minaLogi.RenderPipeLine
                 .Accessor(o => o.Height, (o, v) => o.Height = v)
                 .DefaultValue(720)
                 .Register();
-            RendererNameProperty = ConfigureProperty<string?, RPCanvasOperator>(nameof(RendererName))
-                .Accessor(o => o.RendererName, (o, v) => o.RendererName = v)
-                .DefaultValue("TestRenderer")
+            RendererProperty = ConfigureProperty<Renderer?, RPCanvasOperator>(nameof(Renderer))
+                .Accessor(o => o.Renderer, (o, v) => o.Renderer = v)
                 .Register();
         }
 
@@ -49,7 +39,7 @@ namespace minaLogi.RenderPipeLine
         {
             Properties.Add(new CorePropertyImpl<int>(WidthProperty, this));
             Properties.Add(new CorePropertyImpl<int>(HeightProperty, this));
-            Properties.Add(new CorePropertyImpl<string?>(RendererNameProperty, this));
+            Properties.Add(new CorePropertyImpl<Renderer?>(RendererProperty, this));
             RPDrawable = new(this);
         }
 
@@ -81,15 +71,16 @@ namespace minaLogi.RenderPipeLine
             }
         }
 
-        public string? RendererName
+        [ChoicesProvider(typeof(RendererEnum))]
+        public Renderer? Renderer
         {
-            get => _renderername;
+            get => _renderer;
             set
             {
-                RPDrawable.RendererName = value;
-                if(SetAndRaise(RendererNameProperty, ref _renderername, value))
+                RPDrawable.Renderer = value;
+                if(SetAndRaise(RendererProperty, ref _renderer, value))
                 {
-                    RaiseInvalidated(new RenderInvalidatedEventArgs(this, nameof(RendererName)));
+                    RaiseInvalidated(new RenderInvalidatedEventArgs(this, nameof(Renderer)));
                 }
             }
         }
@@ -105,6 +96,7 @@ namespace minaLogi.RenderPipeLine
             }
             
         }
+
 
     }
 }
