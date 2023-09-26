@@ -6,10 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace minaLogi.RenderPipeLine
 {
+    [JsonConverter(typeof(RendererJsonConverter))]
     public abstract class Renderer
     {
         public abstract string Name { get; }
