@@ -10,7 +10,7 @@
 | --- | --- |
 | Width | レンダラの描画キャンバスの横幅 |
 | Height | レンダラの描画キャンバスの高さ |
-| RendererName | レンダラの名前をテキストで入力して使うものを選択する |
+| Renderer | 使用するレンダラ |
 
 Rendererをプルダウンリストで選択できるようになりました!
 
@@ -21,7 +21,7 @@ Rendererをプルダウンリストで選択できるようになりました!
 using Beutl.Graphics;
 using Beutl.Media;
 using Beutl.Media.Pixel;
-using minaLogi.RenderPipeline;
+using minaLogi.RenderPipeLine;
 
 public class TestRenderer : Renderer
 {
