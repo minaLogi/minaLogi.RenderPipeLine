@@ -1,6 +1,8 @@
 ﻿using Avalonia.Rendering.Composition;
 using Beutl;
 using Beutl.Graphics;
+using Beutl.Graphics.Effects;
+using Beutl.Language;
 using Beutl.Media;
 using Beutl.Media.Pixel;
 using Beutl.ProjectSystem;
@@ -15,18 +17,20 @@ namespace minaLogi.RenderPipeLine
     {
         private int _width;
         private int _height;
-        private Renderer? _renderer;
-
-        private RPCanvasOperator Parent;
+        private RendererContainer? _renderer;
 
         public RenderingAPI RenderingAPI { get; private set; }
 
         internal Drawables Drawables { get; set; } = new Drawables();
 
-        public RPDrawable(RPCanvasOperator parent)
+        public RPDrawable()
         {
-            Parent = parent;
             RenderingAPI = new(Renderer, Width, Height);
+            AffectsRender(
+                TransformProperty,
+                FilterEffectProperty,
+                TransformOriginProperty,
+                BlendModeProperty);
         }
         public int Width
         {
@@ -54,7 +58,7 @@ namespace minaLogi.RenderPipeLine
                 }
             }
         }
-        public Renderer? Renderer
+        public RendererContainer? Renderer
         {
             get => _renderer;
             set
@@ -62,14 +66,41 @@ namespace minaLogi.RenderPipeLine
                 _renderer = value;
                 if(value != null)
                 {
-                    value.Width = Width;
-                    value.Height = Height;
-                    RenderingAPI.ShiftRenderer(value);
+                    if (RenderingAPI.Renderer != null)
+                    {
+                        RenderingAPI.Renderer.Close();
+                    }
+                    var r = value.ActivateRenderer();
+                    r.Width = Width;
+                    r.Height = Height;
+                    RenderingAPI.ShiftRenderer(r);
                     RaiseInvalidated(new RenderInvalidatedEventArgs(this, nameof(Renderer)));
                 }
             }
         }
+        private void AffectsRender(params CoreProperty[] properties)
+        {
+            foreach (CoreProperty item in properties)
+            {
+                item.Changed.Subscribe(e =>
+                {
+                    RaiseInvalidated(new RenderInvalidatedEventArgs(this));
+                    if (e.OldValue is IAffectsRender oldAffectsRender)
+                    {
+                        oldAffectsRender.Invalidated -= AffectsRender_Invalidated;
+                    }
 
+                    if (e.NewValue is IAffectsRender newAffectsRender)
+                    {
+                        newAffectsRender.Invalidated += AffectsRender_Invalidated;
+                    }
+                });
+            }
+        }
+        private void AffectsRender_Invalidated(object? sender, RenderInvalidatedEventArgs e)
+        {
+            RaiseInvalidated(e);
+        }
 
         protected override Size MeasureCore(Size availableSize)
         {

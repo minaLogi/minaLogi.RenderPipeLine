@@ -44,3 +44,7 @@ public class TestRenderer : Renderer
     }
 }
 ```
+
+
+## 既知の問題
+- Transform, FilterEffectに変更を加えた際、即座にプレビュー画面に反映されない

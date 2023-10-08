@@ -11,11 +11,11 @@ namespace minaLogi.RenderPipeLine
     public class RenderingAPI
     {
         internal Renderer? Renderer { get; private set; }
-        public RenderingAPI(Renderer? renderer, int w, int h)
+        public RenderingAPI(RendererContainer? renderer, int w, int h)
         {
             if(renderer != null)
             {
-                ShiftRenderer(renderer);
+                ShiftRenderer(renderer.ActivateRenderer());
             }
             if (Renderer != null)
             {
@@ -31,9 +31,10 @@ namespace minaLogi.RenderPipeLine
             Renderer.OnSelected();
         }
 
-        public static void Register(Renderer renderer)
+        public static void Register<T>()
+            where T : Renderer
         {
-            RendererEnum.AddChoice(renderer);
+            RendererEnum.AddChoice(new RendererContainer(typeof(T)));
         }
 
         public Bitmap<Bgra8888>? Render(Drawables drawables )

@@ -5,11 +5,11 @@ namespace minaLogi.RenderPipeLine
 {
     public sealed class RendererEnum : IChoicesProvider
     {
-        private static readonly CoreList<Renderer> s_choices = new();
+        private static readonly CoreList<RendererContainer> s_choices = new();
 
-        internal static void AddChoice(Renderer renderer)
+        internal static void AddChoice(RendererContainer rc)
         {
-            s_choices.Add(renderer);
+            s_choices.Add(rc);
         }
 
         public static IReadOnlyList<object> GetChoices()
@@ -17,7 +17,7 @@ namespace minaLogi.RenderPipeLine
             return s_choices;
         }
 
-        public static ICoreReadOnlyList<Renderer> GetTypedChoices()
+        public static ICoreReadOnlyList<RendererContainer> GetTypedChoices()
         {
             return s_choices;
         }

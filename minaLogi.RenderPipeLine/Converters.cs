@@ -17,15 +17,15 @@ namespace minaLogi.RenderPipeLine
             => new BitmapSource(Ref<IBitmap>.Create(bitmap), "image");
     }
 
-    internal sealed class RendererJsonConverter : JsonConverter<Renderer>
+    internal sealed class RendererJsonConverter : JsonConverter<RendererContainer>
     {
-        public override Renderer? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override RendererContainer? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? s = reader.GetString();
             return RendererEnum.GetTypedChoices().Where(r => r.Name == s!.ToString()).FirstOrDefault();
         }
 
-        public override void Write(Utf8JsonWriter writer, Renderer value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, RendererContainer value, JsonSerializerOptions options)
         {
             writer.WriteStringValue(value.Name);
         }

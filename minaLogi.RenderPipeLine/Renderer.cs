@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace minaLogi.RenderPipeLine
 {
-    [JsonConverter(typeof(RendererJsonConverter))]
     public abstract class Renderer
     {
         public abstract string Name { get; }
@@ -25,6 +24,8 @@ namespace minaLogi.RenderPipeLine
         public virtual void Load() { }
 
         public virtual void OnSelected() { }
+
+        public virtual void Close() { }
 
         public virtual Bitmap<Bgra8888>? Render(Drawables drawables)
         {

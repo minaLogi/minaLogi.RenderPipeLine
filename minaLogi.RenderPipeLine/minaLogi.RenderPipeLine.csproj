@@ -13,6 +13,7 @@
 		<Version>1.0.0-preview.1</Version>
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<Authors>minaLogi</Authors>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
