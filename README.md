@@ -10,10 +10,9 @@
 | --- | --- |
 | Width | レンダラの描画キャンバスの横幅 |
 | Height | レンダラの描画キャンバスの高さ |
-| RendererName | レンダラの名前をテキストで入力して使うものを選択する |
+| Renderer | 使用するレンダラ |
 
-RendererNameがテキスト入力なことに関して、~~Beutl側で動的にプルダウンリストの内容を変更することができないため、一時的にテキスト入力としています。今後必要な機能がそろい次第、プルダウンリストで選択できるように改善する予定です。~~
-対応が来ました。現在プルダウンリストを使えるように調整中です。
+Rendererをプルダウンリストで選択できるようになりました!
 
 ## レンダラを書く
 レンダラは、第三者がBeutlの拡張機能として追加することができます。
@@ -22,7 +21,7 @@ RendererNameがテキスト入力なことに関して、~~Beutl側で動的に�
 using Beutl.Graphics;
 using Beutl.Media;
 using Beutl.Media.Pixel;
-using minaLogi.RenderPipeline;
+using minaLogi.RenderPipeLine;
 
 public class TestRenderer : Renderer
 {
