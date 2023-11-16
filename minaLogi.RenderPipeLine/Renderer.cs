@@ -1,13 +1,6 @@
 ﻿using Beutl.Graphics;
 using Beutl.Media;
 using Beutl.Media.Pixel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace minaLogi.RenderPipeLine
 {

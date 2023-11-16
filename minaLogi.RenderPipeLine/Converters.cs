@@ -1,13 +1,8 @@
 ﻿using Beutl.Media.Pixel;
 using Beutl.Media;
-using Beutl.Rendering;
 using Beutl.Media.Source;
-using Beutl.Graphics;
-using OpenCvSharp;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Linq;
 
 namespace minaLogi.RenderPipeLine
 {

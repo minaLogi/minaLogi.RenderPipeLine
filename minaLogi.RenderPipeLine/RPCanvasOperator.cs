@@ -7,7 +7,6 @@ using Beutl.Operators.Configure;
 using Beutl.Graphics.Effects;
 using Beutl.Language;
 using Beutl.Graphics.Transformation;
-using Beutl.Styling;
 
 namespace minaLogi.RenderPipeLine
 {

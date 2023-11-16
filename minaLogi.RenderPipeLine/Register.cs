@@ -1,6 +1,5 @@
 ﻿using Beutl.Audio.Effects;
 using Beutl.Audio;
-using Beutl.Extensibility;
 using Beutl.Graphics.Effects;
 using Beutl.Graphics;
 using Beutl.Operation;
@@ -9,7 +8,6 @@ using Beutl.Media;
 using Beutl.NodeTree;
 using Beutl.Graphics.Transformation;
 using Beutl.Animation.Easings;
-using System.Diagnostics;
 
 namespace minaLogi.RenderPipeLine
 {

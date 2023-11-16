@@ -1,10 +1,6 @@
-﻿using Avalonia.Rendering;
-using Beutl.Graphics;
+﻿using Beutl.Graphics;
 using Beutl.Media;
 using Beutl.Media.Pixel;
-using Beutl.Rendering;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace minaLogi.RenderPipeLine
 {
